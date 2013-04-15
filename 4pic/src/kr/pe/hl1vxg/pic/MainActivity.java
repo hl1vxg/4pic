@@ -1,8 +1,9 @@
 package kr.pe.hl1vxg.pic;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
@@ -10,6 +11,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+//		ImageView iconButton = (ImageView)findViewById(R.id.imageView1);
+//		iconButton.setOnClickListener(new ImageViewActivity());
+
 	}
 
 	@Override
@@ -18,5 +23,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+
 
 }
