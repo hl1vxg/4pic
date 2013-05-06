@@ -28,8 +28,10 @@ public final class R {
         public static final int r4=0x7f020004;
     }
     public static final class id {
+        public static final int HintArea=0x7f080006;
         public static final int LinearLayout1=0x7f080000;
-        public static final int action_settings=0x7f080005;
+        public static final int SolveArea=0x7f080005;
+        public static final int action_settings=0x7f080007;
         public static final int imageView1=0x7f080001;
         public static final int imageView2=0x7f080002;
         public static final int imageView3=0x7f080003;
