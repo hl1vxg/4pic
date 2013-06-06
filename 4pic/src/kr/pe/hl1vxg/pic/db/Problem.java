@@ -55,5 +55,20 @@ public class Problem {
 	public void setSolved(boolean solved) {
 		this.solved = solved;
 	}
+	
+	/**
+	 * 
+	 * @return true:correct, false: incorrect
+	 */
+	public boolean isAnswer(String input) {
+		if (input == null || "".equals(input)) return false;
+		
+		if (this.getSolve().equals(input)) {
+			this.setSolved(true);
+			return true;
+		}
+		
+		return false;
+	}
 
 }

@@ -67,9 +67,9 @@ public class MainActivity extends Activity {
 		String[] solve = problem.getSolveArray();
 		
 		for (int i = 0; i < solve.length; i++) {
-			TextView solveText = new TextView(this);
+			SolveTextView solveText = new SolveTextView(this);
 			
-//			solveText.setText(solve[i]);
+			solveText.setAnswer(solve[i]);
 			solveArea.addView(solveText);
 		}
 		
@@ -86,21 +86,39 @@ public class MainActivity extends Activity {
 		
 		public void onClick(View v) {
 			TableRow solveArea = (TableRow)findViewById(R.id.SolveArea);
+			
+			boolean isSolved = false;
+			int cntSolved = 0;
+			
 			int cnt = solveArea.getChildCount();
 			for ( int i = 0 ; i < cnt; i++) {
 				TextView solve = (TextView)solveArea.getChildAt(i);
-				if ("".equals(solve.getText())){
+				if (!isSolved && "".equals(solve.getText())){
 					solve.setText(this.s);
-					return;
+					isSolved = true;
+				}
+				
+				if ( !"".equals(solve.getText())) {
+					cntSolved++;
 				}
 			}
 			
+			if ( cnt == cntSolved) {
+				checkCorrect();
+			}
 			
 		}
 		
+		public void checkCorrect() {
+			TableRow solveArea = (TableRow)findViewById(R.id.SolveArea);
+			int cnt = solveArea.getChildCount();
+			for ( int i = 0 ; i < cnt; i++) {
+				SolveTextView solve = (SolveTextView)solveArea.getChildAt(i);
+				solve.isCorrect();
+			}
+
+		}
 	}
 	
 	
-
-
 }
