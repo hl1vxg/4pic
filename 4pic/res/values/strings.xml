@@ -5,5 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="title">4pic Test!</string>
     <string name="hintImageDesc">Quiz hint image</string>
-
+    <color name="correctBackgroundColor">#0099CC</color>
+    <color name="inCorrectBackgroundColor">#FF4444</color>
+    <color name="solveBackgroundColor">#FFFFFF</color>
+    
 </resources>
