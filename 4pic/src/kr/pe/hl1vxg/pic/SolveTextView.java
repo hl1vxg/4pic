@@ -1,6 +1,5 @@
 package kr.pe.hl1vxg.pic;
 
-import android.R.color;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;

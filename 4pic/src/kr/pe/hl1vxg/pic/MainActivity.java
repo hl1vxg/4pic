@@ -2,7 +2,10 @@ package kr.pe.hl1vxg.pic;
 
 import kr.pe.hl1vxg.pic.db.DBAdapterTest;
 import kr.pe.hl1vxg.pic.db.Problem;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -110,14 +113,29 @@ public class MainActivity extends Activity {
 		}
 		
 		public void checkCorrect() {
+			int message = R.string.correct_Message;
+			boolean isCorrect = true;
+			
 			TableRow solveArea = (TableRow)findViewById(R.id.SolveArea);
 			int cnt = solveArea.getChildCount();
 			for ( int i = 0 ; i < cnt; i++) {
 				SolveTextView solve = (SolveTextView)solveArea.getChildAt(i);
-				solve.isCorrect();
+				isCorrect = (isCorrect && solve.isCorrect()) ? true: false; 
 			}
-
+			
+			if (!isCorrect) {
+				message = R.string.inCorrect_Message;
+			}
+			
+			showDialog(R.string.correct_Title, message);
 		}
+		
+		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+		void showDialog(int title, int message) {
+			DialogFragment fragment = MyDialogFragment.newInstance(title, message);
+			fragment.show(getFragmentManager(), "dialog");
+		}
+		
 	}
 	
 	
