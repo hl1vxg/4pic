@@ -77,14 +77,17 @@ public class MainActivity extends Activity {
 		}
 		
 	}
-	
+	/** Hint alphabet button 
+	 *  */
 	class HintAlphabet implements OnClickListener {
 		String s;
+		Button btn;
 		
 		public HintAlphabet(Button btn , String s) {
 			this.s = s;
 			btn.setText(s);
 			btn.setOnClickListener(this);
+			this.btn = btn;
 		}
 		
 		public void onClick(View v) {
@@ -95,9 +98,9 @@ public class MainActivity extends Activity {
 			
 			int cnt = solveArea.getChildCount();
 			for ( int i = 0 ; i < cnt; i++) {
-				TextView solve = (TextView)solveArea.getChildAt(i);
+				SolveTextView solve = (SolveTextView)solveArea.getChildAt(i);
 				if (!isSolved && "".equals(solve.getText())){
-					solve.setText(this.s);
+					solve.setSolveText(this.s, this.btn);
 					isSolved = true;
 				}
 				
@@ -105,6 +108,9 @@ public class MainActivity extends Activity {
 					cntSolved++;
 				}
 			}
+			
+			// Disabled clicked hint button 
+			this.btn.setEnabled(false);
 			
 			if ( cnt == cntSolved) {
 				checkCorrect();
@@ -114,16 +120,15 @@ public class MainActivity extends Activity {
 		
 		public void checkCorrect() {
 			int message = R.string.correct_Message;
-			boolean isCorrect = true;
 			
 			TableRow solveArea = (TableRow)findViewById(R.id.SolveArea);
 			int cnt = solveArea.getChildCount();
 			for ( int i = 0 ; i < cnt; i++) {
 				SolveTextView solve = (SolveTextView)solveArea.getChildAt(i);
-				isCorrect = (isCorrect && solve.isCorrect()) ? true: false; 
+				message = message & solve.isCorrect();
 			}
 			
-			if (!isCorrect) {
+			if (R.string.correct_Message != message ) {
 				message = R.string.inCorrect_Message;
 			}
 			
